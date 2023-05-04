@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date
 from enum import Enum
 from typing import List
 
@@ -29,7 +29,7 @@ class User:
     email: str
     gender: Gender
     number: str
-    birthday: datetime
+    birthday: date
     subject: List[Subject]
     hobbies: List[Hobby]
     picture: str
@@ -44,7 +44,7 @@ student = User(
     email='Dmitrii@mail.ru',
     gender=Gender.male,
     number='7929042332',
-    birthday=datetime(1991, 1, 9),
+    birthday=date(1991, 1, 9),
     subject=[Subject.arts],
     hobbies=[Hobby.music, Hobby.sports],
     picture='cat.png',
