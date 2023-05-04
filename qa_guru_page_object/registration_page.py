@@ -56,8 +56,15 @@ class RegistrationPage:
 
     def should_have_registered(self, full_name, email, gender, number, birthday, subject,
                                hobby, picture, current_address, state_and_city):
-        browser.all('tbody tr') \
-            .should(have.exact_texts(f'Student Name {full_name}', f'Student Email {email}', f'Gender {gender}',
-                                     f'Mobile {number}', f'Date of Birth {birthday}',
-                                     f'Subjects {subject}', f'Hobbies {hobby}', f'Picture {picture}',
-                                     f'Address {current_address}', f'State and City {state_and_city}'))
+        browser.all('tbody tr') .should(have.exact_texts(
+            f'Student Name {full_name}',
+            f'Student Email {email}',
+            f'Gender {gender}',
+            f'Mobile {number}',
+            f'Date of Birth {birthday}',
+            f'Subjects {subject}',
+            f'Hobbies {hobby}',
+            f'Picture {picture}',
+            f'Address {current_address}',
+            f'State and City {state_and_city}')
+        )

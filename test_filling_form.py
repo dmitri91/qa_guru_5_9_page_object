@@ -19,7 +19,15 @@ def test_filling_form(web_browser):
     registration_page.fill_city('Lucknow')
     registration_page.submit()
     # THEN
-    registration_page.should_have_registered('Dmitii Larin', 'Dmitrii@mail.ru', 'Male',
-                                             '7929042332', '09 January,1991',
-                                             'Arts', 'Sports', 'cat.png',
-                                             'Moscow are', 'Uttar Pradesh Lucknow')
+    registration_page.should_have_registered(
+        'Dmitii Larin',
+        'Dmitrii@mail.ru',
+        'Male',
+        '7929042332',
+        '09 January,1991',
+        'Arts',
+        'Sports',
+        'cat.png',
+        'Moscow are',
+        'Uttar Pradesh Lucknow'
+    )
