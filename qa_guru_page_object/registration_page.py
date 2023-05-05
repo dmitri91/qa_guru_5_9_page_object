@@ -1,5 +1,5 @@
 import os
-
+from pathlib import Path
 from selene import browser, have
 
 from qa_guru_page_object.users import User
@@ -24,8 +24,9 @@ class RegistrationPage:
             browser.element('#subjectsInput').type(subject.value).press_enter()
         for hobby in student.hobbies:
             browser.all('.custom-checkbox').element_by(have.exact_text(hobby.value)).click()
-        browser.element('#uploadPicture').send_keys(os.getcwd() + f"/{student.picture}")
-        browser.element('#currentAddress').type(student.address)
+        # browser.element('#uploadPicture').send_keys(os.getcwd() + f"/{student.picture}")
+        browser.element('#uploadPicture').send_keys(str(Path.cwd().parent) + f"/{student.picture}")
+        browser.element('#currentAddress').type(student.current_address)
         browser.element('#state').click()
         browser.all('[id^=react-select][id*=option]').element_by(have.exact_text(student.state)).click()
         browser.element('#city').click()
@@ -33,13 +34,12 @@ class RegistrationPage:
         browser.element('#submit').execute_script('element.click()')
 
     def should_have_registered(self, student: User):
-        full_name = f'{student.first_name} {student.last_name}'
         birthday = f'{student.birthday.strftime("%d")} {student.birthday.strftime("%B")},{student.birthday.year}'
         state_and_city = f'{student.state} {student.city}'
         subject = ', '.join([subject.value for subject in student.subject])
         hobbies = ', '.join([hobby.value for hobby in student.hobbies])
         browser.all('tbody tr').should(have.exact_texts(
-            f'Student Name {full_name}',
+            f'Student Name {student.full_name}',
             f'Student Email {student.email}',
             f'Gender {student.gender.male.value}',
             f'Mobile {student.number}',
@@ -47,6 +47,6 @@ class RegistrationPage:
             f'Subjects {subject}',
             f'Hobbies {hobbies}',
             f'Picture {student.picture}',
-            f'Address {student.address}',
+            f'Address {student.current_address}',
             f'State and City {state_and_city}')
         )

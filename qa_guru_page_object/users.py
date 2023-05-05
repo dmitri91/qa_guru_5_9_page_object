@@ -26,6 +26,7 @@ class Hobby(Enum):
 class User:
     first_name: str
     last_name: str
+    full_name: str
     email: str
     gender: Gender
     number: str
@@ -33,7 +34,8 @@ class User:
     subject: List[Subject]
     hobbies: List[Hobby]
     picture: str
-    address: str
+    current_address: str
+    permanent_address: str
     state: str
     city: str
 
@@ -41,6 +43,7 @@ class User:
 student = User(
     first_name='Dmitii',
     last_name='Larin',
+    full_name='Dmitii Larin',
     email='Dmitrii@mail.ru',
     gender=Gender.male,
     number='7929042332',
@@ -48,6 +51,7 @@ student = User(
     subject=[Subject.arts],
     hobbies=[Hobby.music, Hobby.sports],
     picture='cat.png',
-    address='Moscow are',
+    current_address='Moscow are',
+    permanent_address='RF',
     state='Uttar Pradesh',
     city='Lucknow')
