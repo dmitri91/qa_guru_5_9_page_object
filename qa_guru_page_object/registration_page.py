@@ -1,4 +1,3 @@
-import os
 import allure
 from selene import have, command
 
@@ -13,8 +12,8 @@ class RegistrationPage:
 
     @allure.step('Открыть форму регистрации')
     def open(self):
-        self.browser.open('https://demoqa.com/automation-practice-form')
-        self.browser.driver.execute_script("$('#fixedban').remove()")
+        self.browser.open('/automation-practice-form')
+        self.browser.element('#fixedban').execute_script('element.remove()')
 
     @allure.step('Заполнить форму')
     def registration(self, student: User):
@@ -34,12 +33,11 @@ class RegistrationPage:
             self.browser.all('.custom-checkbox').element_by(have.exact_text(hobby.value)).click()
         self.browser.element('#uploadPicture').send_keys(resource.get_path(student.picture))
         self.browser.element('#currentAddress').type(student.address)
-        self.browser.element('#state').click()
+        self.browser.element('#state').perform(command.js.scroll_into_view).click()
         self.browser.all('[id^=react-select][id*=option]').element_by(have.exact_text(student.state)).click()
-        self.browser.element('#city').click()
+        self.browser.element('#city').perform(command.js.scroll_into_view).click()
         self.browser.all('[id^=react-select][id*=option]').element_by(have.exact_text(student.city)).click()
-        browser = self.browser
-        browser.driver.execute_script('$("#submit").click()')
+        self.browser.element('#submit').execute_script('element.click()')
 
     @allure.step('Проверить результат заполнения')
     def should_have_registered(self, student: User):
