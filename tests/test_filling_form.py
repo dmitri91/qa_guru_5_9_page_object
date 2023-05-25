@@ -10,3 +10,11 @@ def test_filling_form(setup_browser):
     registration_page.registration(student)
 
     registration_page.should_have_registered(student)
+
+
+def test_pass():
+    pass
+
+
+def test_fail():
+    assert False
