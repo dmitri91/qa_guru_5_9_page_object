@@ -13,6 +13,7 @@ def test_filling_form(setup_browser):
 
 
 def test_pass():
+    print('test')
     pass
 
 
